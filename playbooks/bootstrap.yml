@@ -1,0 +1,40 @@
+---
+- hosts: all
+  gather_facts: no
+  become: yes
+  pre_tasks:
+    - name: Install python 2
+      raw: apt-get install python -y
+
+    - name: Add application user
+      user: name=ghost
+
+  tasks:
+  # Install dependencies
+
+  - name: Add node PPA
+    apt_repository: repo='deb https://deb.nodesource.com/node_4.x xenial main'
+
+  - name: Add node key
+    apt_key: url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+
+  - name: Install aptitude
+    apt: name=aptitude
+
+  - name: Update and upgrade packages
+    apt: update_cache=yes upgrade=yes
+
+  - name: Install node
+    apt: name=nodejs
+
+  - name: Install postgres
+    apt: name=postgresql
+
+  - name: Install sqlite libs
+    apt: name=libsqlite3-dev
+
+  - name: Install unzip
+    apt: name=unzip
+
+  - name: Copy systemd
+    copy: src=../files/ghost.service dest=/lib/systemd/system/

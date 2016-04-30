@@ -1,0 +1,19 @@
+---
+- hosts: all
+  become_user: ghost
+  become: true
+  tasks:
+    - name: Set up app directory
+      file: name=~/app state=directory
+
+    - name: Unarchive ghost
+      unarchive: src=../files/ghost.zip dest=~/app creates=~/app/index.js
+
+    - name: Copy ghost config
+      copy: src=../files/config.js dest=~/app/config.js
+
+    - name: Install dependencies
+      npm: path=~/app production=yes
+
+    - name: Tighten up permissions
+      file: name='~' mode='u+rw,o-rwx' recurse=yes

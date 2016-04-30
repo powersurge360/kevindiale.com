@@ -1,0 +1,9 @@
+---
+- include: playbooks/bootstrap.yml
+- include: playbooks/application.yml
+
+- hosts: all
+  become: true
+  tasks:
+    - name: Start ghost
+      service: name=ghost state=restarted enabled=yes
