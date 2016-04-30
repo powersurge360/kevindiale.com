@@ -1,13 +1,13 @@
 [Unit]
-Description=ghost
+Description={{ user }}
 After=network.target
 
 [Service]
 Type=simple
 # Edit WorkingDirectory, User and Group as needed
-WorkingDirectory=/home/ghost/app
-User=ghost
-Group=ghost
+WorkingDirectory=/home/{{ user }}/app
+User={{ user }}
+Group={{ user }}
 ExecStart=/usr/bin/npm start --production
 ExecStop=/usr/bin/npm stop --production
 Restart=always

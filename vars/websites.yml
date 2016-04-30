@@ -1,0 +1,5 @@
+---
+- kevindiale_domain: 'http://kevindiale.com'
+  kevindiale_port: '2368'
+  daydreamingofdesign_domain: 'http://daydreamingofdesign'
+  daydreamingofdesign_port: '2369'

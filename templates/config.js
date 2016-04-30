@@ -11,7 +11,7 @@ config = {
     // When running Ghost in the wild, use the production environment.
     // Configure your URL and mail settings here
     production: {
-        url: 'http://kevindiale.com',
+        url: '{{ domain }}',
         mail: {},
         database: {
             client: 'sqlite3',
@@ -22,8 +22,8 @@ config = {
         },
 
         server: {
-            host: '0.0.0.0',
-            port: '2368'
+            host: '127.0.0.1',
+            port: '{{ port }}'
         }
     },
 

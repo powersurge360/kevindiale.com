@@ -1,0 +1,18 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Copy systemd
+      template: src=../templates/ghost.service dest=/lib/systemd/system/{{ user }}.service
+
+    - name: Start ghost
+      service: name="{{ user }}" state=restarted enabled=yes
+
+    - name: Copy nginx config
+      template: src=../templates/nginx.conf dest=/etc/nginx/sites-available/{{ user }}
+
+    - name: Create nginx symlink
+      file: src=/etc/nginx/sites-available/{{ user }} dest=/etc/nginx/sites-enabled/{{ user }} state=link
+
+    - name: Restart nginx
+      service: name=nginx state=restarted

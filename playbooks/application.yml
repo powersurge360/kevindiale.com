@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  become_user: ghost
+  become_user: "{{ user }}"
   become: true
   tasks:
     - name: Set up app directory
@@ -10,7 +10,7 @@
       unarchive: src=../files/ghost.zip dest=~/app creates=~/app/index.js
 
     - name: Copy ghost config
-      copy: src=../files/config.js dest=~/app/config.js
+      template: src=../templates/config.js dest=~/app/config.js
 
     - name: Install dependencies
       npm: path=~/app production=yes

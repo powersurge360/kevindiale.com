@@ -1,9 +1,26 @@
 ---
 - include: playbooks/bootstrap.yml
-- include: playbooks/application.yml
 
-- hosts: all
-  become: true
-  tasks:
-    - name: Start ghost
-      service: name=ghost state=restarted enabled=yes
+- include: playbooks/application.yml
+  vars:
+    user: kevindiale
+    domain: 'http://kevindiale.com'
+    port: 2368
+
+- include: playbooks/install_service.yml
+  vars:
+    user: kevindiale
+    domain: kevindiale.com
+    port: 2368
+
+- include: playbooks/application.yml
+  vars:
+    user: daydreamingofdesign
+    domain: 'http://daydreamingofdesign.com'
+    port: 2369
+
+- include: playbooks/install_service.yml
+  vars:
+    user: daydreamingofdesign
+    domain: daydreamingofdesign.com
+    port: 2369

@@ -6,8 +6,11 @@
     - name: Install python 2
       raw: apt-get install python -y
 
-    - name: Add application user
-      user: name=ghost
+    - name: Add kevindiale user
+      user: name=kevindiale
+
+    - name: Add daydreamingofdesign user
+      user: name=daydreamingofdesign
 
   tasks:
   # Install dependencies
@@ -27,14 +30,11 @@
   - name: Install node
     apt: name=nodejs
 
-  - name: Install postgres
-    apt: name=postgresql
-
   - name: Install sqlite libs
     apt: name=libsqlite3-dev
 
   - name: Install unzip
     apt: name=unzip
 
-  - name: Copy systemd
-    copy: src=../files/ghost.service dest=/lib/systemd/system/
+  - name: Install nginx
+    apt: name=nginx
