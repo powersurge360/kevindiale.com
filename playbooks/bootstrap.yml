@@ -6,11 +6,9 @@
     - name: Install python 2
       raw: apt-get install python -y
 
-    - name: Add kevindiale user
-      user: name=kevindiale
-
-    - name: Add daydreamingofdesign user
-      user: name=daydreamingofdesign
+    - name: Add user
+      user: name={{ item }}
+      with_items: "{{ users }}"
 
   tasks:
   # Install dependencies

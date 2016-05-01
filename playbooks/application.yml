@@ -12,6 +12,9 @@
     - name: Copy ghost config
       template: src=../templates/config.js dest=~/app/config.js
 
+    - name: Install Attila theme
+      unarchive: src=../files/attila-theme.zip dest=~/app/content/themes
+
     - name: Install dependencies
       npm: path=~/app production=yes
 

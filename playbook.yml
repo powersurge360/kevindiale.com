@@ -1,5 +1,5 @@
 ---
-- include: playbooks/bootstrap.yml
+- include: playbooks/bootstrap.yml users='["kevindiale", "daydreamingofdesign"]'
 
 - include: playbooks/application.yml
   vars:
